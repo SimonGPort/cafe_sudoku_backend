@@ -26,7 +26,7 @@ type Query {
     login:String
 }
  type Mutation {
-   createUser(name: String!,password:String!,score:[String]):String
+   createUser(name: String!,password:String!):String
  }
 
 `

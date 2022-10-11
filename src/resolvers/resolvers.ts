@@ -7,17 +7,18 @@ interface resolvers{
 const resolvers={
     Query:{
         hello:()=>{return "hello"},
-        login:()=>{
-            // return "hi"
-            return User.find({})
+        login:async()=>{
+            const test= await User.find({})
+           console.log("test:",test)
+           return 'hi'
         },
   
     },
     Mutation:{
-        createUser:async (_:any,name:String,password:String,score:[String])=>{
-            const newUser=new User(name,password,score)
+        createUser:async (_:any,name:String,password:String)=>{
+            const newUser=new User(name,password,[])
             await newUser.save();
-            return newUser;
+            return "success";
         }
     }
 }
