@@ -22,17 +22,22 @@ type User{
     id:String
 }
 
+type SuccessObj{
+    result:Boolean
+    status:Int
+}
+
 type loginAnswer{
-    success:Boolean
+    success:SuccessObj
     user:User
 }
 
 type newScoreAnswer{
-    success:Boolean
+    success:SuccessObj
 }
 
 type createUserAnswer{
-    success:Boolean
+    success:SuccessObj
     id:String
 }
 
