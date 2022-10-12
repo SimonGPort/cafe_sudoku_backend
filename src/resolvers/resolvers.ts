@@ -1,3 +1,4 @@
+import { isConstValueNode } from 'graphql'
 import {User} from '../models/User'
 
 interface resolvers{
@@ -6,28 +7,27 @@ interface resolvers{
 
 const resolvers={
     Query:{
-        hello:()=>{return "hello"},
-        login:async()=>{
-            const test= await User.find({})
-           console.log("test:",test)
-           return 'hi'
+        login:async(_:any,_id:String)=>{
+            const userFound= await User.findOne({_id})
+            if(userFound){
+                return {success:true,user:{name:userFound.name, score:userFound.score}}
+            }
+            else{
+                return {success:false}
+            }
         },
-  
     },
     Mutation:{
         createUser:async (_:any,name:String,password:String)=>{
             const newUser=new User(name,password,[])
             await newUser.save();
-            return "success";
-        }
+            console.log("newUser._id",newUser._id)
+            return {success:true, id:newUser._id};
+        },
+        // newScore:async (_:any,_id:String,date:String)=>{
+        //     return {success:true};
+        // }
     }
 }
-
-  // createUser:(name:String,password:String,score:[String])=>{
-        //     // const newUser=new User(name,password,score)
-        //     // await newUser.save();
-        //     // return newUser;
-        //     return 'Hihi'
-        //     }
 
 export {resolvers}
