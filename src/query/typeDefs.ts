@@ -19,6 +19,7 @@ const typeDefs=gql`
 type User{
     name:String
     score:[String]
+    id:String
 }
 
 type loginAnswer{
@@ -26,6 +27,9 @@ type loginAnswer{
     user:User
 }
 
+type newScoreAnswer{
+    success:Boolean
+}
 
 type createUserAnswer{
     success:Boolean
@@ -33,17 +37,13 @@ type createUserAnswer{
 }
 
 type Query {
-    login(_id:String!):loginAnswer
+    login(name:String!,password:String!):loginAnswer
 }
 type Mutation {
     createUser(name: String!,password:String!):createUserAnswer
+    newScore(id:String!,date:String!):newScoreAnswer
 }
 `
-// type newScoreAnswer{
-//     success:Boolean
-// }
-// newScore(_id:String!,date:String!):newScoreAnswer
-// ObjectId("634614b2f3aa77aea99b7045")
 
 
 
