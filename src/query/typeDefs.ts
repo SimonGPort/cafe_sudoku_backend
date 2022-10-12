@@ -37,6 +37,7 @@ const typeDefs = gql`
 
   type Query {
     login(name: String!, password: String!): loginAnswer
+    autoLogin(id: String!): loginAnswer
   }
   type Mutation {
     createUser(name: String!, password: String!): createUserAnswer
