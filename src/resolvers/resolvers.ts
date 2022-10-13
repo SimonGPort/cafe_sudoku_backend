@@ -57,6 +57,9 @@ const resolvers = {
   },
   Mutation: {
     createUser: async (_: any, args: generalArgs) => {
+        if(args.name=""){
+            return { success: { result: false, status: 400 }, id: "" };  
+        }
       const userExistant = await User.findOne({ name: args.name });
       if (userExistant) {
         return { success: { result: false, status: 409 }, id: "" };
