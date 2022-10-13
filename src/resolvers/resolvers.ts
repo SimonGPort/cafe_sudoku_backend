@@ -60,20 +60,34 @@ const resolvers = {
   },
   Mutation: {
     createUser: async (_: any, args: generalArgs) => {
-        if(args.name=""){
-            return { success: { result: false, status: 400 }, id: "" };  
+        if(args.name===""){
+            return { success: { result: false, status: 400 }, user: {
+                id: "",
+                name: "",
+                score: [],
+              } 
+            };  
         }
       const userExistant = await User.findOne({ name: args.name });
       if (userExistant) {
-        return { success: { result: false, status: 409 }, id: "" };
+        return { success: { result: false, status: 409 }, user: {
+            id: "",
+            name: "",
+            score: [],
+          }  };
       }
+      console.log("test:",args)
       const newUser = new User({
         name: args.name,
         password: args.password,
         score: [],
       });
       await newUser.save();
-      return { success: { result: true, status: 201 }, id: newUser._id };
+      return { success: { result: true, status: 201 }, user: {
+        id: newUser._id,
+        name: args.name,
+        score: [],
+      }};
     },
     newScore: async (_: any, args: scoreArgs) => {
       await User.updateOne({ _id: args.id }, { $push: { score: args.date } });

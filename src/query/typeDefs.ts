@@ -30,17 +30,12 @@ const typeDefs = gql`
     success: SuccessObj
   }
 
-  type createUserAnswer {
-    success: SuccessObj
-    id: String
-  }
-
   type Query {
     login(name: String!, password: String!): loginAnswer
     autoLogin(id: String!): loginAnswer
   }
   type Mutation {
-    createUser(name: String!, password: String!): createUserAnswer
+    createUser(name: String!, password: String!): loginAnswer
     newScore(id: String!, date: String!): newScoreAnswer
   }
 `;
