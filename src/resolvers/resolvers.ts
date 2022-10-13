@@ -38,6 +38,9 @@ const resolvers = {
       }
     },
     autoLogin: async (_: any, args: autoLoginArgs) => {
+        if(args.id===''){
+            return {success: { result: false, status: 401 }}
+        }
       const userFound = await User.findOne({
         _id: args.id,
       });
