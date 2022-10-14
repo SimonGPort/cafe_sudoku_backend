@@ -76,7 +76,6 @@ const resolvers = {
             score: [],
           }  };
       }
-      console.log("test:",args)
       const newUser = new User({
         name: args.name,
         password: args.password,
